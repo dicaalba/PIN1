@@ -12,7 +12,7 @@ pipeline {
    stage('Building image') {
       steps{
           sh '''
-          cd webapp
+          cd elbuo8/webapp
           docker build -t testapp .
              '''  
         }
