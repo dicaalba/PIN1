@@ -12,6 +12,7 @@ pipeline {
    stage('Building image') {
       steps{
           sh '''
+          cd webapp
           docker build -t testapp .
              '''  
         }
@@ -31,10 +32,10 @@ pipeline {
         '''
         }
       }
+   stage('Vulnerability Scan - Docker ') {
+        steps {
+          sh "docker run  -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy image --severity=critical 127.0.0.1:5000/mguazzardo/testapp"
+            }
+        }
     }
 }
-
-
-    
-  
-
